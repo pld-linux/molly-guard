@@ -14,6 +14,7 @@ URL:		http://ftp.debian.org/debian/pool/main/m/molly-guard
 BuildRequires:	docbook-style-xsl
 BuildRequires:	libxslt
 Requires:	procps
+Requires:	rc-scripts >= 0.4.8
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
