@@ -11,6 +11,7 @@ Source2:	%{name}.csh
 Patch1:		docbook.patch
 Patch2:		doubleslashes.patch
 URL:		http://ftp.debian.org/debian/pool/main/m/molly-guard
+BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	libxslt-progs
 BuildRequires:	sed >= 4.0
