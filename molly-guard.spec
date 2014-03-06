@@ -1,7 +1,7 @@
 Summary:	protects machines from accidental shutdowns/reboots
 Name:		molly-guard
 Version:	0.4.5
-Release:	0.3
+Release:	1
 License:	Artistic Licence 2.0
 Group:		Applications/System
 Source0:	http://ftp.debian.org/debian/pool/main/m/molly-guard/%{name}_%{version}.orig.tar.gz
@@ -12,7 +12,8 @@ Patch1:		docbook.patch
 Patch2:		doubleslashes.patch
 URL:		http://ftp.debian.org/debian/pool/main/m/molly-guard
 BuildRequires:	docbook-style-xsl
-BuildRequires:	libxslt
+BuildRequires:	libxslt-progs
+BuildRequires:	sed >= 4.0
 Requires:	procps
 Requires:	rc-scripts >= 0.4.8
 BuildArch:	noarch
@@ -38,16 +39,18 @@ non-interactively, or locally.
 %setup -q
 %patch1 -p1
 %patch2 -p1
+%{__sed} -i -e '/install/ s/-oroot -[og]root//' Makefile
+%{__sed} -i -e '/chown/ s/root.root/%(id -un)/' Makefile
 
 %build
-%{__make} all \
+%{__make} shutdown \
 	etc_prefix=/ \
 	prefix=%{_prefix}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT
-fakeroot %{__make} install \
+%{__make} install \
 	etc_prefix=/ \
 	prefix=%{_prefix} \
 	DEST=$RPM_BUILD_ROOT
