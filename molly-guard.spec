@@ -1,7 +1,7 @@
 Summary:	protects machines from accidental shutdowns/reboots
 Name:		molly-guard
 Version:	0.4.5
-Release:	0.2
+Release:	0.3
 License:	Artistic Licence 2.0
 Group:		Applications/System
 Source0:	http://ftp.debian.org/debian/pool/main/m/molly-guard/%{name}_%{version}.orig.tar.gz
@@ -65,7 +65,7 @@ rm -fr $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) /etc/profile.d/molly-guard.sh
 %dir %{_sysconfdir}/%{name}
 %dir %{_sysconfdir}/%{name}/run.d
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/run.d/*
+%attr(755,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/run.d/*
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/rc
 %attr(755,root,root) %{_sbindir}/halt
 %attr(755,root,root) %{_sbindir}/poweroff
