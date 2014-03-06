@@ -1,9 +1,9 @@
 Summary:	protects machines from accidental shutdowns/reboots
 Name:		molly-guard
 Version:	0.4.5
-Release:	0.1
+Release:	0.2
 License:	Artistic Licence 2.0
-Group:		Applications/Networking
+Group:		Applications/System
 Source0:	http://ftp.debian.org/debian/pool/main/m/molly-guard/%{name}_%{version}.orig.tar.gz
 # Source0-md5:	bee1573a8740d5dcc25302490b18213a
 Source1:	%{name}.sh
