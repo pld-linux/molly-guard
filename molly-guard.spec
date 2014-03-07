@@ -56,8 +56,8 @@ install -d $RPM_BUILD_ROOT
 	prefix=%{_prefix} \
 	DEST=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/etc/profile.d
-cp -p %{SOURCE1} %{SOURCE2} $RPM_BUILD_ROOT/etc/profile.d
+install -d $RPM_BUILD_ROOT/etc/shrc.d
+cp -p %{SOURCE1} %{SOURCE2} $RPM_BUILD_ROOT/etc/shrc.d
 
 %clean
 rm -fr $RPM_BUILD_ROOT
@@ -65,8 +65,8 @@ rm -fr $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc ChangeLog
-%config(noreplace) %verify(not md5 mtime size) /etc/profile.d/molly-guard.csh
-%config(noreplace) %verify(not md5 mtime size) /etc/profile.d/molly-guard.sh
+%config(noreplace) %verify(not md5 mtime size) /etc/shrc.d/molly-guard.csh
+%config(noreplace) %verify(not md5 mtime size) /etc/shrc.d/molly-guard.sh
 %dir %{_sysconfdir}/%{name}
 %dir %{_sysconfdir}/%{name}/run.d
 %attr(755,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/run.d/*

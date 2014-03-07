@@ -1,11 +1,11 @@
 ##
-## update $PATH for use with molly-guard
+## set up molly-guard aliases
 ##
 
-# if we're superuser, reorder $PATH if it's wrong to get molly-guard working
+# if we're superuser, point reboot/shutdown commands at molly-guard
 if ( `id -u` == 0 ) then
-	# switch sbin entries
-	set path = ( `echo ${path} | sed -re 's#(^|\ )/sbin(\ |.*)/usr/sbin(\ |$)#\1/usr/sbin\2/sbin\3#'` )
-	# switch bin entries
-	set path = ( `echo ${path} | sed -re 's#(^|\ )/bin(\ |.*)/usr/bin(\ |$)#\1/usr/bin\2/bin\3#'` )
+    alias halt /usr/sbin/halt
+    alias poweroff /usr/sbin/poweroff
+    alias reboot /usr/sbin/reboot
+    alias shutdown /usr/sbin/shutdown
 endif
