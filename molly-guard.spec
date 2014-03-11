@@ -10,6 +10,7 @@ Source1:	%{name}.sh
 Source2:	%{name}.csh
 Patch1:		docbook.patch
 Patch2:		doubleslashes.patch
+Patch3:     bin_path.patch
 URL:		http://ftp.debian.org/debian/pool/main/m/molly-guard
 BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-style-xsl
@@ -40,6 +41,7 @@ non-interactively, or locally.
 %setup -q
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 %{__sed} -i -e '/install/ s/-oroot -[og]root//' Makefile
 %{__sed} -i -e '/chown/ s/root.root/%(id -un)/' Makefile
 
@@ -71,10 +73,11 @@ rm -fr $RPM_BUILD_ROOT
 %dir %{_sysconfdir}/%{name}/run.d
 %attr(755,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/run.d/*
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/rc
-%attr(755,root,root) %{_sbindir}/halt
-%attr(755,root,root) %{_sbindir}/poweroff
-%attr(755,root,root) %{_sbindir}/reboot
-%attr(755,root,root) %{_sbindir}/shutdown
+%dir %{_datadir}/%{name}/bin
+%attr(755,root,root) %{_datadir}/%{name}/bin/halt
+%attr(755,root,root) %{_datadir}/%{name}/bin/poweroff
+%attr(755,root,root) %{_datadir}/%{name}/bin/reboot
+%attr(755,root,root) %{_datadir}/%{name}/bin/shutdown
 %dir %{_datadir}/%{name}
 %attr(755,root,root) %{_datadir}/%{name}/shutdown
 %{_mandir}/man8/%{name}.8*

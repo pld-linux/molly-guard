@@ -1,11 +1,9 @@
 ##
-## set up molly-guard aliases
+## update $PATH for use with molly-guard
 ##
 
-# if we're superuser, point reboot/shutdown commands at molly-guard
+# if we're superuser, put molly-guard binaries at the beginning of $PATH
 if ( `id -u` == 0 ) then
-    alias halt /usr/sbin/halt
-    alias poweroff /usr/sbin/poweroff
-    alias reboot /usr/sbin/reboot
-    alias shutdown /usr/sbin/shutdown
+    # TODO: avoid duplicates same as in *.sh
+    set path = ( /usr/share/molly-guard/bin $path )
 endif
