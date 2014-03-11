@@ -10,7 +10,7 @@ Source1:	%{name}.sh
 Source2:	%{name}.csh
 Patch1:		docbook.patch
 Patch2:		doubleslashes.patch
-Patch3:     bin_path.patch
+Patch3:		bin_path.patch
 URL:		http://ftp.debian.org/debian/pool/main/m/molly-guard
 BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-style-xsl
@@ -58,9 +58,10 @@ install -d $RPM_BUILD_ROOT
 	prefix=%{_prefix} \
 	DEST=$RPM_BUILD_ROOT
 
+# sudo hack
 install -d $RPM_BUILD_ROOT/bin
 for cmd in halt poweroff reboot shutdown; do
-    ln -s %{_datadir}/%{name}/shutdown $RPM_BUILD_ROOT/bin/$cmd
+	ln -s %{_datadir}/%{name}/shutdown $RPM_BUILD_ROOT/bin/$cmd
 done
 
 install -d $RPM_BUILD_ROOT/etc/shrc.d
@@ -74,7 +75,10 @@ rm -fr $RPM_BUILD_ROOT
 %doc ChangeLog
 %config(noreplace) %verify(not md5 mtime size) /etc/shrc.d/molly-guard.csh
 %config(noreplace) %verify(not md5 mtime size) /etc/shrc.d/molly-guard.sh
-%attr(755,root,root) /bin/*
+%attr(755,root,root) /bin/halt
+%attr(755,root,root) /bin/poweroff
+%attr(755,root,root) /bin/reboot
+%attr(755,root,root) /bin/shutdown
 %dir %{_sysconfdir}/%{name}
 %dir %{_sysconfdir}/%{name}/run.d
 %attr(755,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/run.d/*
