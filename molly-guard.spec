@@ -39,9 +39,9 @@ non-interactively, or locally.
 
 %prep
 %setup -q
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
+%patch -P1 -p1
+%patch -P2 -p1
+%patch -P3 -p1
 %{__sed} -i -e '/install/ s/-oroot -[og]root//' Makefile
 %{__sed} -i -e '/chown/ s/root.root/%(id -un)/' Makefile
 
